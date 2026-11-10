@@ -1,0 +1,74 @@
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ESP8266: Build",
+      "type": "process",
+      "command": "zsh",
+      "args": [
+        "-ic",
+        "esp8266-enable && make -j2"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "ESP8266: Flash + Monitor",
+      "type": "process",
+      "command": "zsh",
+      "args": [
+        "-ic",
+        "esp8266-enable && make flash monitor ESPPORT=\"${input:usbPort}\""
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "ESP8266: Monitor",
+      "type": "process",
+      "command": "zsh",
+      "args": [
+        "-ic",
+        "esp8266-enable && make monitor ESPPORT=\"${input:usbPort}\""
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "usbPort",
+      "type": "promptString",
+      "description": "ESP8266 serial port (e.g. /dev/ttyUSB0)",
+      "default": "/dev/ttyUSB0"
+    }
+  ]
+}
